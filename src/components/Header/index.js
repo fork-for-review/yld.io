@@ -12,6 +12,7 @@ import close from '../../images/menu_close.svg'
 import { MobileMenu, HomeLink, Close, DesktopMenu } from './elements.js'
 
 const isClient = () => typeof window !== 'undefined'
+const is = page => window.location.pathname.includes(page)
 
 const HiddenText = styled.h1`
   position: absolute;
@@ -32,51 +33,47 @@ class Header extends Component {
             <header>
               <Padding top={2} bottom={3}>
                 <Flex alignCenter wrap justifyBetween>
-                  <Link to="/">
-                    {isClient() &&
-                    !window.location.pathname.includes('engineering') &&
-                    !this.props.blue &&
-                    !window.location.pathname.includes('design') ? (
-                      <img
-                        role="link"
-                        tab-index="0"
-                        height="48"
-                        src={logo}
-                        alt="yld logo"
-                      />
-                    ) : null}
-
-                    {(isClient() &&
-                      window.location.pathname.includes('engineering')) ||
-                    this.props.blue ? (
-                      <Fragment>
-                        <HiddenText>engineering</HiddenText>
-                        <LogoEngComponent
-                          boxColour={this.props.logoColour}
-                          backgroundBlue={this.props.blue}
-                        />
-                      </Fragment>
-                    ) : null}
-
-                    {isClient() && this.props.blue ? (
-                      <Fragment>
-                        <HiddenText>engineering</HiddenText>
-                      </Fragment>
-                    ) : null}
-                    {isClient() &&
-                    window.location.pathname.includes('design') ? (
-                      <Fragment>
-                        <HiddenText>Design</HiddenText>
+                  {isClient() ? (
+                    <Link to="/">
+                      {!is('engineering') &&
+                      !this.props.blue &&
+                      !is('design') &&
+                      !is('training') ? (
                         <img
                           role="link"
                           tab-index="0"
                           height="48"
-                          src={logoDesign}
-                          alt="yld design logo"
+                          src={logo}
+                          alt="yld logo"
                         />
-                      </Fragment>
-                    ) : null}
-                  </Link>
+                      ) : null}
+
+                      {is('engineering') ||
+                      is('training') ||
+                      this.props.blue ? (
+                        <Fragment>
+                          <HiddenText>engineering</HiddenText>
+                          <LogoEngComponent
+                            boxColour={this.props.logoColour}
+                            backgroundBlue={this.props.blue}
+                          />
+                        </Fragment>
+                      ) : null}
+
+                      {is('design') ? (
+                        <Fragment>
+                          <HiddenText>Design</HiddenText>
+                          <img
+                            role="link"
+                            tab-index="0"
+                            height="48"
+                            src={logoDesign}
+                            alt="yld design logo"
+                          />
+                        </Fragment>
+                      ) : null}
+                    </Link>
+                  ) : null}
                   <MobileMenu>
                     <button onClick={this.toggleMenu}>
                       <img src={menu} alt="open menu" />
