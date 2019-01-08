@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import Helmet from 'react-helmet'
 import { ThemeProvider } from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
@@ -11,7 +11,7 @@ import BlueBackground from './BlueBG'
 import google from '../utils/google-json.json'
 import Cookie from './Common/CookieBanner'
 
-class Layout extends React.Component {
+class Layout extends Component {
   state = { cookiesAllowed: true }
 
   componentDidMount() {
