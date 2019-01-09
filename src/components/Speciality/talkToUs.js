@@ -12,9 +12,9 @@ const TalkToUsSection = ({ contactTitle, title, contactText }) => (
         <Row>
           <Col width={[1, 1, 1, 1, 4 / 12]}>
             {contactTitle ? (
-              <SmallerH2>{contactTitle}</SmallerH2>
+              <SmallerH2 noTop>{contactTitle}</SmallerH2>
             ) : (
-              <SmallerH2>{`Talk to us about ${title}`}</SmallerH2>
+              <SmallerH2 noTop>{`Talk to us about ${title}`}</SmallerH2>
             )}
           </Col>
           <Col width={[0, 0, 0, 0, 2 / 12]} />
@@ -26,7 +26,6 @@ const TalkToUsSection = ({ contactTitle, title, contactText }) => (
           </Col>
         </Row>
       </Padding>
-      <Padding bottom={3} />
     </Grid>
   </GreyBackground>
 )

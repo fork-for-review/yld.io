@@ -27,7 +27,15 @@ export const SmallerH2 = styled.h2`
     font-size: ${remcalc(42)};
     padding: ${remcalc(21)} 0;
     line-height: ${remcalc(42)};
+
+    ${is('noTop')`
+      padding-top: 0
+    `};
   `}
+
+  ${is('noTop')`
+    padding-top: 0
+  `};
 `
 
 export default H2
