@@ -2,12 +2,12 @@ import React, { Fragment, Component } from 'react'
 import Helmet from 'react-helmet'
 import { ThemeProvider } from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
+import { Location } from '@reach/router'
 import Header from './Header'
 import './layout.css'
 import theme from '../utils/theme'
 import GlobalStyle from '../utils/globalStyle'
 import Footer from './Footer'
-import BlueBackground from './BlueBG'
 import google from '../utils/google-json.json'
 import Cookie from './Common/CookieBanner'
 
@@ -24,7 +24,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { children, blue, logoColour } = this.props
+    const { children, logoColour } = this.props
     return (
       <StaticQuery
         query={graphql`
@@ -48,12 +48,11 @@ class Layout extends Component {
             `}</script>
                 <html lang="en" />
               </Helmet>
-              {blue && (
-                <BlueBackground>
-                  <Header blue logoColour={logoColour} />
-                </BlueBackground>
-              )}
-              {!blue && <Header logoColour={logoColour} />}
+              <Location>
+                {({ location }) => (
+                  <Header path={location.pathname} logoColour={logoColour} />
+                )}
+              </Location>
               {children}
               <Footer />
               <GlobalStyle />

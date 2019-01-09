@@ -1,24 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import { Row, Col, Grid } from '../grid'
 import Flex from 'styled-flex-component'
-import styled from 'styled-components'
+
 import { Padding } from 'styled-components-spacing'
-import logo from '../../images/logo_animated.gif'
-import logoDesign from '../../images/design-logo.svg'
-import LogoEngComponent from '../../images/eng-logo-component'
+
 import menu from '../../images/menu.svg'
 import close from '../../images/menu_close.svg'
 import { MobileMenu, HomeLink, Close, DesktopMenu } from './elements.js'
-
-const isClient = () => typeof window !== 'undefined'
-const is = page => window.location.pathname.includes(page)
-
-const HiddenText = styled.h1`
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-`
+import Logo from './Logo'
 
 class Header extends Component {
   state = { menuOpen: false }
@@ -26,6 +16,7 @@ class Header extends Component {
   toggleMenu = () => this.setState(state => ({ menuOpen: !state.menuOpen }))
 
   render() {
+    const { path, logoColour, blue } = this.props
     return (
       <Grid>
         <Row>
@@ -33,47 +24,9 @@ class Header extends Component {
             <header>
               <Padding top={2} bottom={3}>
                 <Flex alignCenter wrap justifyBetween>
-                  {isClient() ? (
-                    <Link to="/">
-                      {!is('engineering') &&
-                      !this.props.blue &&
-                      !is('design') &&
-                      !is('training') ? (
-                        <img
-                          role="link"
-                          tab-index="0"
-                          height="48"
-                          src={logo}
-                          alt="yld logo"
-                        />
-                      ) : null}
-
-                      {is('engineering') ||
-                      is('training') ||
-                      this.props.blue ? (
-                        <Fragment>
-                          <HiddenText>engineering</HiddenText>
-                          <LogoEngComponent
-                            boxColour={this.props.logoColour}
-                            backgroundBlue={this.props.blue}
-                          />
-                        </Fragment>
-                      ) : null}
-
-                      {is('design') ? (
-                        <Fragment>
-                          <HiddenText>Design</HiddenText>
-                          <img
-                            role="link"
-                            tab-index="0"
-                            height="48"
-                            src={logoDesign}
-                            alt="yld design logo"
-                          />
-                        </Fragment>
-                      ) : null}
-                    </Link>
-                  ) : null}
+                  <Link to="/">
+                    <Logo path={path} logoColour={logoColour} blue={blue} />
+                  </Link>
                   <MobileMenu>
                     <button onClick={this.toggleMenu}>
                       <img src={menu} alt="open menu" />
