@@ -8,7 +8,7 @@ import StyledLink from '../styledLink'
 const TalkToUsSection = ({ contactTitle, title, contactText }) => (
   <GreyBackground>
     <Grid>
-      <Padding top={5} bottom={5}>
+      <Padding top={5} bottom={4}>
         <Row>
           <Col width={[1, 1, 1, 1, 4 / 12]}>
             {contactTitle ? (

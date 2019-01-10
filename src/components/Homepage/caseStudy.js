@@ -55,15 +55,18 @@ const CaseStudy = ({ caseStudy, subHeading }) => (
     <ImageWrapper width={[1, 1, 1, 1, 1 / 2]}>
       <Image alt={caseStudy.posterImage.title} image={caseStudy.posterImage} />
     </ImageWrapper>
-    <FlexCol width={[0, 0, 0, 0, 1 / 2]}>
+    <Col width={[0, 0, 0, 0, 0, 0, 1 / 12]} />
+    <FlexCol width={[0, 0, 0, 0, 5 / 12]}>
       <TextWrapper>
         <SubHeading>{subHeading}</SubHeading>
         <H2 noTop>{caseStudy.title}</H2>
-        <Padding top={0.5}>
+        <Padding top={1.5}>
           <Paragraph fullWidth>{getIntroSentence(caseStudy)}</Paragraph>
-          <StyledLink to={`/case-study/${caseStudy.slug}`}>
-            Learn more
-          </StyledLink>
+          <Padding top={1}>
+            <StyledLink to={`/case-study/${caseStudy.slug}`}>
+              Learn more
+            </StyledLink>
+          </Padding>
         </Padding>
       </TextWrapper>
     </FlexCol>
