@@ -31,10 +31,16 @@ export const SmallerH2 = styled.h2`
     ${is('noTop')`
       padding-top: 0
     `};
+        ${is('noMargin')`
+      padding: 0
+    `};
   `}
 
   ${is('noTop')`
     padding-top: 0
+  `};
+  ${is('noMargin')`
+    padding: 0
   `};
 `
 
