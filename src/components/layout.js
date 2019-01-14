@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
 import Header from './Header'
 import './layout.css'
+import BlueBackground from './BlueBG'
 import theme from '../utils/theme'
 import GlobalStyle from '../utils/globalStyle'
 import Footer from './Footer'
@@ -24,7 +25,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { children, logoColour } = this.props
+    const { children, logoColour, blue } = this.props
     return (
       <StaticQuery
         query={graphql`
@@ -49,9 +50,19 @@ class Layout extends Component {
                 <html lang="en" />
               </Helmet>
               <Location>
-                {({ location }) => (
-                  <Header path={location.pathname} logoColour={logoColour} />
-                )}
+                {({ location }) =>
+                  blue ? (
+                    <BlueBackground>
+                      <Header
+                        blue
+                        path={location.pathname}
+                        logoColour={logoColour}
+                      />
+                    </BlueBackground>
+                  ) : (
+                    <Header path={location.pathname} logoColour={logoColour} />
+                  )
+                }
               </Location>
               {children}
               <Footer />
